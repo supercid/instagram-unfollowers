@@ -32,31 +32,29 @@ git clone https://github.com/ozkc/instagram-unfollowers
 ```
 pip2 install -r requirements.txt
 ```
-In order to use you need to get instagram id. It is different than username and just contains numbers. It can be learn from various sites. 
-
-ex: [http://www.ershad7.com/InstagramUserID/](http://www.ershad7.com/InstagramUserID/)
- 
- ![Alt Text](https://media.giphy.com/media/3ohs80R80RThSPnAkw/giphy.gif)
-
-We see that instagram user id for nasa is 528817151
-
-In order to use it you need to edit **main.py**
+In order to use you need to get instagram id. It is different than username and just contains numbers.
+Go to:
 ```
- #modify here                                                                
- insta = Instagram('usernamefoo', 'passfordfoo')                                   
-             
+https://www.instagram.com/{username}/?__a=1
 ```
-After writing down the username and password run the program
+And you'll see a json output with the ID
 
-    python2.7 main.py foouserid
- 
-Write whoever you want to check.  You or your Ex or nasa. Lets say you're checking nasa's account.
 
-    python2.7 main.py 528817151
-    
+In order to use it you need to fill the .env file
+```
+ cp .env.sample .env
+```
+After writing down the username, password and ID run the program
+
+    python2.7 main.py
+     
 
 And check html file with any browser. Firefox or elinks if you're working on the terminal.
-  
+
+### Running with Docker: 
+```
+docker run --rm -v $(pwd):/instagram supercid/instagram-unfollowers && open output.html
+```
 
 iii. some ideas
 ---------------

@@ -9,18 +9,21 @@ import pystache
 import io
 import webbrowser
 import random
+from dotenv import load_dotenv
 
-numer = sys.argv[1]
+load_dotenv()
+INSTAGRAM_ID = os.getenv("INSTAGRAM_ID")
+USER = os.getenv("INSTAGRAM_USER")
+PASSWORD = os.environ.get("INSTAGRAM_PASSWORD")
+
+insta = Instagram(USER, PASSWORD)
+
 print " ~ Connecting to Instagram"
-#modify here
-insta = Instagram('usernamefoo', 'passfordfoo')                                   
-
-
 if insta.login() == False:
     print "Login failed"
     sys.exit(2)
 print " ~ Sending request to Instagram , fetching your feeds"
-temp = insta.getTotalUserFeed(numer)
+temp = insta.getTotalUserFeed(INSTAGRAM_ID)
 likedUsers = {}
 for item in temp:
     insta.getMediaLikers(item["id"])
@@ -37,9 +40,9 @@ for item in temp:
             likedUsers[user["username"]]["count"] += 1
 
 print " ~ Sending request to Instagram , fetching followers"
-followers = insta.getTotalFollowers(numer)
+followers = insta.getTotalFollowers(INSTAGRAM_ID)
 print " ~ Sending request to Instagram , fetching followings"
-followings = insta.getTotalFollowings(numer)
+followings = insta.getTotalFollowings(INSTAGRAM_ID)
 followersnum=len(followers)
 followingsnum=len(followings)
 print " ~ Processing..."
